@@ -1,5 +1,3 @@
-let weatherInfo;
-let errorMessage;
 const content = document.querySelector(".content");
 const container = document.querySelector(".container");
 const heading = document.querySelector("#heading");
@@ -16,7 +14,7 @@ const fetchData = async () => {
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
-    weatherInfo = {
+    const weatherInfo = {
       city: data.name,
       temp: data.main.temp,
       description: data.weather[0].description,
@@ -28,7 +26,7 @@ const fetchData = async () => {
     content.classList.add("hide");
   } catch (error) {
     console.log(error.message);
-    errorMessage = "Something went wrong";
+    const errorMessage = "Something went wrong";
     displayError();
   }
 };
