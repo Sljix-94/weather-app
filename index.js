@@ -5,11 +5,13 @@ const temperature = document.querySelector("#temperature");
 const description = document.querySelector("#description");
 const image = document.querySelector("#img");
 
+let unit = "metric";
 loading();
-const fetchData = async () => {
+
+const fetchData = async (unit) => {
   try {
     const key = `95662109ff51268dddd80880a65ffd09`;
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=Berlin,&appid=${key}&units=metric`;
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=Berlin,&appid=${key}&units=${unit}`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -26,12 +28,12 @@ const fetchData = async () => {
   }
 };
 
-fetchData();
+fetchData(unit);
 
 function displayContent(obj) {
   containerItem.classList.remove("hide_content");
   heading.textContent = `Europe/${obj.city}`;
-  temperature.textContent = `${obj.temp} F`;
+  temperature.textContent = `${obj.temp} ${unit === "metric" ? "C" : "F"}`;
   description.textContent = obj.description;
   image.src = `http://openweathermap.org/img/wn/${obj.icon}.png`;
 }
@@ -44,3 +46,7 @@ function loading() {
   content.classList.remove("hide_content");
   content.textContent = "Loading...";
 }
+heading.addEventListener("click", () => {
+  unit = unit === "metric" ? "imperial" : "metric";
+  fetchData(unit);
+});
