@@ -5,8 +5,6 @@ const temperature = document.querySelector("#temperature");
 const description = document.querySelector("#description");
 const image = document.querySelector("#img");
 
-let errorMessage;
-
 loading();
 const fetchData = async () => {
   try {
@@ -15,21 +13,16 @@ const fetchData = async () => {
 
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
-    const weatherInfo = {
+
+    displayContent({
       city: data.name,
       temp: data.main.temp,
       description: data.weather[0].description,
       icon: data.weather[0].icon,
-    };
-    console.log(weatherInfo);
-
-    displayContent(weatherInfo);
+    });
     content.classList.add("hide_content");
   } catch (error) {
-    console.log(error.message);
-    errorMessage = "Something went wrong";
-    displayError();
+    displayError("Somenting went wrong");
   }
 };
 
@@ -43,7 +36,7 @@ function displayContent(obj) {
   image.src = `http://openweathermap.org/img/wn/${obj.icon}.png`;
 }
 
-function displayError() {
+function displayError(errorMessage) {
   content.textContent = errorMessage;
 }
 
