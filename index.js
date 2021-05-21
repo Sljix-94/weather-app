@@ -1,9 +1,11 @@
 const content = document.querySelector(".content");
 const container = document.querySelector(".container");
 const heading = document.querySelector("#heading");
-const stepeni = document.querySelector("#stepeni");
+const temperature = document.querySelector("#temperature");
 const description = document.querySelector("#description");
 const image = document.querySelector("#img");
+
+let errorMessage;
 
 loading();
 const fetchData = async () => {
@@ -23,10 +25,10 @@ const fetchData = async () => {
     console.log(weatherInfo);
 
     displayContent(weatherInfo);
-    content.classList.add("hide");
+    content.classList.add("hide_content");
   } catch (error) {
     console.log(error.message);
-    const errorMessage = "Something went wrong";
+    errorMessage = "Something went wrong";
     displayError();
   }
 };
@@ -34,9 +36,9 @@ const fetchData = async () => {
 fetchData();
 
 function displayContent(obj) {
-  container.classList.remove("hide");
+  container.classList.remove("hide_content");
   heading.textContent = `Europe/${obj.city}`;
-  stepeni.textContent = `${obj.temp} F`;
+  temperature.textContent = `${obj.temp} F`;
   description.textContent = obj.description;
   image.src = `http://openweathermap.org/img/wn/${obj.icon}.png`;
 }
@@ -46,6 +48,6 @@ function displayError() {
 }
 
 function loading() {
-  content.classList.remove("hide");
+  content.classList.remove("hide_content");
   content.textContent = "Loading...";
 }
