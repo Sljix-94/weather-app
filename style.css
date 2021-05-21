@@ -19,7 +19,7 @@ body {
   align-items: center;
 }
 
-main {
+.container_item {
   height: calc(100vh - 50vh);
   display: flex;
   flex-direction: column;
@@ -27,11 +27,7 @@ main {
   justify-content: space-evenly;
 }
 
-.hide_content {
-  display: none;
-}
-
-.header {
+.container_item_header {
   font-family: "Archivo Narrow", sans-serif;
   display: flex;
 }
@@ -45,9 +41,6 @@ main {
   font-size: 20px;
 }
 
-.content {
-  color: #000;
-  position: absolute;
-  top: 40%;
-  left: 48%;
+.hide_content {
+  display: none;
 }

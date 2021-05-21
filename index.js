@@ -1,5 +1,5 @@
-const content = document.querySelector(".content");
-const container = document.querySelector(".container");
+const content = document.querySelector("#content-message");
+const containerItem = document.querySelector(".container_item");
 const heading = document.querySelector("#heading");
 const temperature = document.querySelector("#temperature");
 const description = document.querySelector("#description");
@@ -36,7 +36,7 @@ const fetchData = async () => {
 fetchData();
 
 function displayContent(obj) {
-  container.classList.remove("hide_content");
+  containerItem.classList.remove("hide_content");
   heading.textContent = `Europe/${obj.city}`;
   temperature.textContent = `${obj.temp} F`;
   description.textContent = obj.description;
